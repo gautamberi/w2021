@@ -1,0 +1,39 @@
+﻿@model WebAPI.Models.ImageFeed
+@{
+    ViewBag.Title = "Home Page";
+}
+@using (Html.BeginForm())
+{
+<div class="jumbotron" style="background-image:url('/images/bg.jpg');color:white;text-align:center;">
+    <h3>Search your Images ...</h3>
+    <div class="row" style="text-align: center;">
+        <input name="search" type="text" class="col-md-6 form-control" />
+        <input value="Search" type="submit" class="col-sm-1 btn btn-default" />
+    </div>
+   
+</div>
+}
+<div class="row">
+    @{
+        foreach (var item in (Model.items))
+        {
+            <div class="col-sm-3">
+                <div class="thumbnail">
+                    <img src="@item.media.m" alt="@item.tags" width="180" height="180" />
+                    <div class="caption">
+                        <h3>
+                            @item.title
+                        </h3>
+                        <p>
+                            Date Taken: @item.date_taken.ToString().Substring(0, 10)
+                        </p>
+                        <p>
+                            @item.tags
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        }
+    }
+</div>
